@@ -1,14 +1,13 @@
 {
   "name": "therrecord",
   "version": "1.0.0",
-  "type":"module",
   "main": "expo/AppEntry.js",
   "scripts": {
     "start": "npx expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "npm test",
+    "test": "jest --config jest.config.js",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
   },
   "dependencies": {
