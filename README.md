@@ -1,8 +1,8 @@
-# Project Name
+# Therrecord
 
 ## Overview
 
-This is Therrecord and app for recording therapy sessions.
+This is Therrecord an app for recording therapy sessions.
 
 ## Installation
 ### Prerequisites
