@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput, Button, Text, Headline, useTheme } from 'react-native-paper';
+
 import Logo from '../assets/icon.svg';  // Ensure the path is correct
 
 export const SignUp = ({ navigation }) => {
@@ -26,7 +27,7 @@ export const SignUp = ({ navigation }) => {
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <View style={styles.logoContainer}>
         <Logo height={100} width={100} />
-        <Headline style={[styles.logoText, { color: theme.colors.onBackground }]}>Therrecord</Headline>
+        <Headline style={[styles.logoText, { color: theme.colors.onBackground }]}><Text>Therrecord</Text></Headline>
       </View>
       <TextInput
         label="Email"
@@ -60,7 +61,7 @@ export const SignUp = ({ navigation }) => {
         onPress={handleSignUp}
         style={styles.button}
         color={theme.colors.primary}>
-        Sign Up
+        <Text theme={{colors:{onSurface:'#ffffff'}}}>Sign Up</Text>
       </Button>
       <TouchableOpacity onPress={navigateToSignIn} style={styles.signUpLink}>
         <Text style={[styles.linkText, { color: theme.colors.primary }]}>Already have an account? Sign In</Text>

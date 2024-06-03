@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { IconButton, Button, Appbar, useTheme, Text } from 'react-native-paper';
+
 import { RecentSessions } from '../components/RecentSession'; // Ensure the import path is correct
 
 export const Home = ({navigation}) => {
@@ -32,7 +33,7 @@ export const Home = ({navigation}) => {
         onPress={() => console.log('Rate the App')}
         style={styles.rateButton}
       >
-        Rate the App
+        <Text> Rate the App</Text>
       </Button>
     </View>
   );
