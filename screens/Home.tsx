@@ -33,7 +33,7 @@ export const Home = ({navigation}) => {
         onPress={() => console.log('Rate the App')}
         style={styles.rateButton}
       >
-        Rate the App
+        <Text> Rate the App</Text>
       </Button>
     </View>
   );

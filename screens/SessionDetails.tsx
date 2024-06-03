@@ -12,7 +12,7 @@ export const SessionDetails = () => {
 
   return (
     <ScrollView style={[styles.container, {backgroundColor: theme.colors.background}]}>
-      <Headline style={[styles.header, {color: theme.colors.onBackground}]}>Session Details</Headline>
+      <Headline style={[styles.header, {color: theme.colors.onBackground}]}><Text>Session Details</Text></Headline>
       <Card style={[styles.card, {backgroundColor: theme.colors.surface}]}>
         <Card.Content>
           <View style={styles.buttonContainer}>

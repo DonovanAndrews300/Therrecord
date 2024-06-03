@@ -34,7 +34,7 @@ export const RecentSessions = ({ navigation }) => {
     <Card style={[styles.card, { backgroundColor: theme.colors.surface }]}>
       <Card.Content>
         <View style={styles.headerContainer}>
-          <Title style={[styles.title, { color: theme.colors.onSurface }]}>Recent Sessions</Title>
+          <Title style={[styles.title, { color: theme.colors.onSurface }]}><Text>Recent Sessions</Text></Title>
           <TouchableOpacity onPress={handleViewAll}>
             <Text style={[styles.viewAllText, { color: theme.colors.primary }]}>
                             View All

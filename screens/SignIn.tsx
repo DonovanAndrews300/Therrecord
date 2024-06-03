@@ -22,8 +22,7 @@ export const SignIn = ({ navigation }) => {
       <View style={styles.logoContainer}>
         {/* Display the SVG logo from the assets folder */}
         <Logo height={100} width={100} />
-
-        <Headline style={[styles.logoText, { color: theme.colors.onBackground }]}>Therrecord</Headline>
+        <Headline style={[styles.logoText, { color: theme.colors.onBackground }]}><Text>Therrecord</Text></Headline>
       </View>
       <TextInput
         label="Email"
@@ -47,14 +46,14 @@ export const SignIn = ({ navigation }) => {
         onPress={() => console.log('Forgot Password Pressed')}
         uppercase={false}
         color={theme.colors.primary}>
-        Forgot password?
+        <Text>Forgot password?</Text>
       </Button>
       <Button
         mode="contained"
         onPress={handleSignIn}
         style={styles.button}
         color={theme.colors.primary}>
-        Sign In
+        <Text theme={{colors:{onSurface:'#ffffff'}}}>Sign In</Text>
       </Button>
       <TouchableOpacity onPress={navigateToSignUp} style={styles.signUpLink}>
         <Text style={[styles.linkText, { color: theme.colors.primary }]}>Don't have an account? Sign up</Text>
