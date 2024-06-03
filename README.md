@@ -6,7 +6,7 @@ This is Therrecord an app for recording therapy sessions.
 
 ## Installation
 ### Prerequisites 
-
+ 
 -Downloanding the Expo Go App on your mobile device.
 
 ### Steps
