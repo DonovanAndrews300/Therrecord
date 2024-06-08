@@ -6,6 +6,8 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import { DarkTheme, LightTheme } from "./theme";
 import AppNavigator from "./components/Navigation";
+import { AuthProvider } from "./contexts/AuthContext";
+import { FirestoreProvider } from "./contexts/FirestoreContext";
 
 
 export default function App() {
@@ -14,7 +16,11 @@ export default function App() {
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer>
-        <AppNavigator/>
+        <AuthProvider>
+          <FirestoreProvider>
+            <AppNavigator/>
+          </FirestoreProvider>        
+        </AuthProvider>
       </NavigationContainer>
     </PaperProvider>
   );
