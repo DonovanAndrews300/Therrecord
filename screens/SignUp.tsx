@@ -3,6 +3,7 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput, Button, Text, Headline, useTheme } from 'react-native-paper';
 
 import Logo from '../assets/icon.svg';  // Ensure the path is correct
+import { signUpUser } from '../contexts/utils /auth';
 
 export const SignUp = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -10,13 +11,10 @@ export const SignUp = ({ navigation }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const theme = useTheme();  // This pulls the theme from context provided by PaperProvider
 
-  const handleSignUp = () => {
-    if (password !== confirmPassword) {
-      console.log('Passwords do not match.');
-      return; // Early return if the passwords do not match
-    }
-    console.log('Sign Up with:', email, password);
-    navigation.navigate("Home");
+  const handleSignUp = async  () => {
+    await signUpUser(email,password,confirmPassword);
+    navigation.navigate('SignIn');
+
   };
 
   const navigateToSignIn = () => {
@@ -77,7 +75,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   logoContainer: {
-    flexDirection: 'column',  // Change to 'column' to stack logo and text vertically
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 20
@@ -85,7 +83,7 @@ const styles = StyleSheet.create({
   logoText: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginTop: -20,  // Adjust top margin to space out the text from the logo
+    marginTop: -20,
   },
   input: {
     marginBottom: 10,

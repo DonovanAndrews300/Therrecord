@@ -3,14 +3,14 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput, Button, Text, Headline, useTheme } from 'react-native-paper';
 
 import Logo from '../assets/icon.svg';
+import { signInUser } from '../contexts/utils /auth';
 export const SignIn = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const theme = useTheme();  // This pulls the theme from context provided by PaperProvider
 
-  const handleSignIn = () => {
-    console.log('Sign In with:', email, password);
-    navigation.navigate("Home");
+  const handleSignIn = async () => {
+    await signInUser( email, password);
   };
 
   const navigateToSignUp = () => {

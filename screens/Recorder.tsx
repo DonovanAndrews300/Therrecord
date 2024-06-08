@@ -27,18 +27,6 @@ export const Recorder = () => {
         </View>
         <View style={styles.buttonContainer}>
           <IconButton
-            icon="emoticon-happy-outline"
-            size={30}
-            onPress={() => {}}
-            style={styles.iconButton}
-            iconColor={theme.colors.primary}
-          />
-          <Text style={[styles.buttonLabel, { color: theme.colors.onSurface }]}>
-            Emote
-          </Text>
-        </View>
-        <View style={styles.buttonContainer}>
-          <IconButton
             icon="square"
             size={30}
             style={styles.iconButton}
