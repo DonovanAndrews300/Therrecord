@@ -13,7 +13,8 @@ export const SignUp = ({ navigation }) => {
 
   const handleSignUp = async  () => {
     await signUpUser(email,password,confirmPassword);
-    navigation.navigate("Home");
+    navigation.navigate('SignIn');
+
   }
 
   const navigateToSignIn = () => {
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   logoContainer: {
-    flexDirection: 'column',  // Change to 'column' to stack logo and text vertically
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 20
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
   logoText: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginTop: -20,  // Adjust top margin to space out the text from the logo
+    marginTop: -20,
   },
   input: {
     marginBottom: 10,

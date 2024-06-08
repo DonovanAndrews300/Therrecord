@@ -11,8 +11,10 @@ export const SignIn = ({ navigation }) => {
 
   const handleSignIn = async () => {
     await signInUser( email, password);
-    navigation.navigate("Home");
-  };
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Home' }],
+    });  };
 
   const navigateToSignUp = () => {
     navigation.navigate('SignUp');
