@@ -16,20 +16,20 @@ export default function App() {
  
   const theme = colorScheme === 'dark' ? DarkTheme : LightTheme;
   const RootNavigator = () =>
-   {  const {user} = useAuth();
+  {  const {user} = useAuth();
     return (
       <NavigationContainer>
         {user ? <AppNavigator/>:<AuthNavigator/>}
       </NavigationContainer>
-    )
+    );
   };
   return (
     <PaperProvider theme={theme}>
-        <AuthProvider>
-          <FirestoreProvider>
-            <RootNavigator/>
-          </FirestoreProvider>        
-        </AuthProvider>
+      <AuthProvider>
+        <FirestoreProvider>
+          <RootNavigator/>
+        </FirestoreProvider>        
+      </AuthProvider>
     </PaperProvider>
   );
 }

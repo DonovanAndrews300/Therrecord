@@ -5,16 +5,16 @@ module.exports = function(api) {
     env: {
       test: {
         plugins: ['@babel/plugin-transform-runtime',   
-        [
-          'module:react-native-dotenv',
-          {
-            envName: 'APP_ENV',
-            moduleName: '@env',
-            path: '.env',
+          [
+            'module:react-native-dotenv',
+            {
+              envName: 'APP_ENV',
+              moduleName: '@env',
+              path: '.env',
             
-          },
+            },
+          ],
         ],
-      ],
       },
     },
   };

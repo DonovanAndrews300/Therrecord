@@ -11,7 +11,7 @@ export const SignIn = ({ navigation }) => {
 
   const handleSignIn = async () => {
     await signInUser( email, password);
-    };
+  };
 
   const navigateToSignUp = () => {
     navigation.navigate('SignUp');

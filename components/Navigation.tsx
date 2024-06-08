@@ -22,11 +22,11 @@ export const AppNavigator = () =>  {
 
 export const AuthNavigator = () => {
   return (
-  <Stack.Navigator initialRouteName="SignIn">
-  <Stack.Screen name="SignIn" component={SignIn} />
-  <Stack.Screen name="SignUp" component={SignUp} />
-</Stack.Navigator>
-  )
+    <Stack.Navigator initialRouteName="SignIn">
+      <Stack.Screen name="SignIn" component={SignIn} />
+      <Stack.Screen name="SignUp" component={SignUp} />
+    </Stack.Navigator>
+  );
 
 };
 

@@ -1,17 +1,18 @@
-import React , {createContext, useContext, useState, useEffect} from 'react';
-import { firestore } from '../firebaseConfig'
-import {collection, getDocs, addDoc} from 'firebase/firestore';
+// import React , {createContext, useContext, useState, useEffect} from 'react';
+// import {collection, getDocs, addDoc} from 'firebase/firestore';
 
-const FirestoreContext = createContext({});
+// import { firestore } from '../firebaseConfig';
 
-export const FirestoreProvider = ({ children }) => {
-    const [userData, setUserData] = useState([]);
+// const FirestoreContext = createContext({});
 
-    const getUserData = (userData) =>{};
+// export const FirestoreProvider = ({ children }) => {
+//   const [userData, setUserData] = useState([]);
 
-    return (
-        <FirestoreContext.Provider value={{userData}}>
-            {children}
-        </FirestoreContext.Provider>
-    )
-}
+//   const getUserData = (userData) =>{};
+
+//   return (
+//     <FirestoreContext.Provider value={{userData}}>
+//       {children}
+//     </FirestoreContext.Provider>
+//   );
+// };
