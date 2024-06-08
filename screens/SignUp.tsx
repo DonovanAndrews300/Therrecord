@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput, Button, Text, Headline, useTheme } from 'react-native-paper';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import {auth} from '../firebaseConfig'
 
 import Logo from '../assets/icon.svg';  // Ensure the path is correct
 import { signUpUser } from '../contexts/utils /auth';

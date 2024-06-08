@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput, Button, Text, Headline, useTheme } from 'react-native-paper';
-import { signInWithEmailAndPassword } from 'firebase/auth';
 
 import Logo from '../assets/icon.svg';
 import { signInUser } from '../contexts/utils /auth';
