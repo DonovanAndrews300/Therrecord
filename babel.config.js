@@ -4,7 +4,17 @@ module.exports = function(api) {
     presets: ['babel-preset-expo'],
     env: {
       test: {
-        plugins: ['@babel/plugin-transform-runtime'],
+        plugins: ['@babel/plugin-transform-runtime',   
+        [
+          'module:react-native-dotenv',
+          {
+            envName: 'APP_ENV',
+            moduleName: '@env',
+            path: '.env',
+            
+          },
+        ],
+      ],
       },
     },
   };
