@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput, Button, Text, Headline, useTheme } from 'react-native-paper';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {auth} from '../firebaseConfig'
 
 import Logo from '../assets/icon.svg';  // Ensure the path is correct
+import { signUpUser } from '../contexts/utils /auth';
 
 export const SignUp = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -10,14 +13,10 @@ export const SignUp = ({ navigation }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const theme = useTheme();  // This pulls the theme from context provided by PaperProvider
 
-  const handleSignUp = () => {
-    if (password !== confirmPassword) {
-      console.log('Passwords do not match.');
-      return; // Early return if the passwords do not match
-    }
-    console.log('Sign Up with:', email, password);
+  const handleSignUp = async  () => {
+    await signUpUser(email,password,confirmPassword);
     navigation.navigate("Home");
-  };
+  }
 
   const navigateToSignIn = () => {
     navigation.navigate('SignIn');
