@@ -7,9 +7,10 @@ import Logo from '../assets/icon.svg'; // Adjust the path according to your proj
 export const Recorder = ({navigation}) => {
   const theme = useTheme();
 
- const {uri, isRecording, handleStartStop} = useAudioRecorder();
+ const {uri, isRecording, handleStartStop, stopRecording} = useAudioRecorder();
     const endRecording = () =>{
-      handleStartStop();
+      stopRecording();
+      console.log(uri)
       navigation.navigate('Home');
     }
   
