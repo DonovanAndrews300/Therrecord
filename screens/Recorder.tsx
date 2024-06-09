@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, StyleSheet, Platform } from 'react-native';
 import { IconButton, Text, useTheme } from 'react-native-paper';
+import { useAudioRecorder } from '../hooks';
+import Logo from '../assets/icon.svg'; // Adjust the path according to your project structure
 
-export const Recorder = () => {
-  const [isRecording, setIsRecording] = useState(false);
-  const theme = useTheme();  // Access the theme from context
+export const Recorder = ({navigation}) => {
+  const theme = useTheme();
 
-  const handleStartStop = () => {
-    setIsRecording(!isRecording);
-  };
-
+ const {uri, isRecording, handleStartStop} = useAudioRecorder();
+    const endRecording = () =>{
+      handleStartStop();
+      navigation.navigate('Home');
+    }
+  
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+      <View style={styles.logoContainer}>
+        <Logo width={200} height={200} />
+      </View>
       <View style={[styles.buttonBar, { backgroundColor: theme.colors.surface }]}>
         <View style={styles.buttonContainer}>
           <IconButton
@@ -31,6 +37,7 @@ export const Recorder = () => {
             size={30}
             style={styles.iconButton}
             iconColor={theme.colors.primary}
+            onPress={endRecording}
           />
           <Text style={[styles.buttonLabel, { color: theme.colors.onSurface }]}>
             End
@@ -44,7 +51,12 @@ export const Recorder = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logoContainer: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
   },
   buttonBar: {
