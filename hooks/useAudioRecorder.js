@@ -9,8 +9,8 @@ const useAudioRecorder = () => {
   useEffect(() => {
     return recording
       ? () => {
-          recording.stopAndUnloadAsync();
-        }
+        recording.stopAndUnloadAsync();
+      }
       : undefined;
   }, [recording]);
 

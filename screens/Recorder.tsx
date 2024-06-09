@@ -1,18 +1,19 @@
 import React from 'react';
-import { View, StyleSheet, Platform } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { IconButton, Text, useTheme } from 'react-native-paper';
+
 import { useAudioRecorder } from '../hooks';
 import Logo from '../assets/icon.svg'; // Adjust the path according to your project structure
 
 export const Recorder = ({navigation}) => {
   const theme = useTheme();
 
- const {uri, isRecording, handleStartStop, stopRecording} = useAudioRecorder();
-    const endRecording = () =>{
-      stopRecording();
-      console.log(uri)
-      navigation.navigate('Home');
-    }
+  const {uri, isRecording, handleStartStop, stopRecording} = useAudioRecorder();
+  const endRecording = () =>{
+    stopRecording();
+    console.log(uri);
+    navigation.navigate('Home');
+  };
   
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
