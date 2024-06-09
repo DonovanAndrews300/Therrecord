@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { IconButton, Text, useTheme } from 'react-native-paper';
-import useAudioRecorder from '../hooks/useAudioRecorder';
 
+import useAudioRecorder from '../hooks/useAudioRecorder';
 import Logo from '../assets/icon.svg'; // Adjust the path according to your project structure
 
 export const Recorder = ({navigation}) => {
