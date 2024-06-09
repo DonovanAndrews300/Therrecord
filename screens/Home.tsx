@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { IconButton, Button, Appbar, useTheme, Text } from 'react-native-paper';
+import { IconButton, Appbar, useTheme, Text } from 'react-native-paper';
 
 import { RecentSessions } from '../components/RecentSession'; // Ensure the import path is correct
+import TextButton from '../components/TextButton';
 
 export const Home = ({navigation}) => {
   const theme = useTheme(); // Access the theme from context
@@ -26,15 +27,15 @@ export const Home = ({navigation}) => {
 
       <RecentSessions navigation={navigation} />
 
-      <Button
+      <TextButton
         icon="star"
         mode="contained"
+        text={"Rate the App"}
         color={theme.colors.primary}
         onPress={() => console.log('Rate the App')}
         style={styles.rateButton}
-      >
-        <Text> Rate the App</Text>
-      </Button>
+      />
+    
     </View>
   );
 };
