@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { TextInput, Button, Text, Headline, useTheme } from 'react-native-paper';
+import { TextInput, Text, Headline, useTheme } from 'react-native-paper';
 
 import Logo from '../assets/icon.svg';
 import { signInUser } from '../contexts/utils /auth';
+import TextButton from '../components/TextButton';
 export const SignIn = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -42,19 +43,18 @@ export const SignIn = ({ navigation }) => {
         style={styles.input}
         theme={{ colors: { primary: theme.colors.primary, background: theme.colors.surface } }}
       />
-      <Button
+      <TextButton
         onPress={() => console.log('Forgot Password Pressed')}
         uppercase={false}
-        color={theme.colors.primary}>
-        <Text>Forgot password?</Text>
-      </Button>
-      <Button
+        text={"Forgot password?"}
+        color={theme.colors.primary}/>
+      <TextButton
         mode="contained"
         onPress={handleSignIn}
         style={styles.button}
+        text={"Sign in"}
         color={theme.colors.primary}>
-        <Text theme={{colors:{onSurface:'#ffffff'}}}>Sign In</Text>
-      </Button>
+      </TextButton>
       <TouchableOpacity onPress={navigateToSignUp} style={styles.signUpLink}>
         <Text style={[styles.linkText, { color: theme.colors.primary }]}>Don't have an account? Sign up</Text>
       </TouchableOpacity>

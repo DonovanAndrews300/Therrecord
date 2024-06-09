@@ -4,6 +4,7 @@ import { TextInput, Button, Text, Headline, useTheme } from 'react-native-paper'
 
 import Logo from '../assets/icon.svg';  // Ensure the path is correct
 import { signUpUser } from '../contexts/utils /auth';
+import TextButton from '../components/TextButton';
 
 export const SignUp = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -54,13 +55,12 @@ export const SignUp = ({ navigation }) => {
         style={styles.input}
         theme={{ colors: { primary: theme.colors.primary, background: theme.colors.surface } }}
       />
-      <Button
+      <TextButton
         mode="contained"
         onPress={handleSignUp}
+        text={"Sign up"}
         style={styles.button}
-        color={theme.colors.primary}>
-        <Text theme={{colors:{onSurface:'#ffffff'}}}>Sign Up</Text>
-      </Button>
+        color={theme.colors.primary}/>
       <TouchableOpacity onPress={navigateToSignIn} style={styles.signUpLink}>
         <Text style={[styles.linkText, { color: theme.colors.primary }]}>Already have an account? Sign In</Text>
       </TouchableOpacity>
