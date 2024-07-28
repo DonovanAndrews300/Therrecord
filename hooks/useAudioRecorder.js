@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Audio } from 'expo-av';
+import { Audio, InterruptionModeAndroid, InterruptionModeIOS } from 'expo-av';
 
-const useAudioRecorder = () => {
+const useAudioRecorder =  () => {
   const [isRecording, setIsRecording] = useState(false);
   const [recording, setRecording] = useState(null);
   const [uri, setUri] = useState(null);
@@ -31,7 +31,12 @@ const useAudioRecorder = () => {
       }
       await Audio.setAudioModeAsync({
         allowsRecordingIOS: true,
+        interruptionModeIOS: InterruptionModeIOS.DoNotMix,
         playsInSilentModeIOS: true,
+        shouldDuckAndroid: true,
+        interruptionModeAndroid: InterruptionModeAndroid.DoNotMix,
+        playThroughEarpieceAndroid: false,
+        staysActiveInBackground: true,
       });
 
       if (recording) {
@@ -59,12 +64,19 @@ const useAudioRecorder = () => {
 
   const stopRecording = async () => {
     if (!recording) return;
-    await recording.stopAndUnloadAsync();
-    const uri = recording.getURI();
-    setUri(uri);
-    setRecording(null);
-    setIsRecording(false);
-    console.log('Recording stopped and stored at', uri);
+    try {
+      if(isRecording){
+        await recording.stopAndUnloadAsync();
+        setIsRecording(false);
+      }
+      const audioUri = recording.getURI();
+      setUri(audioUri);
+      setRecording(null);
+      setIsRecording(false);
+      console.log('Recording stopped and stored at', audioUri);
+    } catch (error) {
+      console.error('Failed to stop recording', error);
+    }
   };
 
   return {

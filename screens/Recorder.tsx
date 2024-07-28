@@ -1,20 +1,36 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, StyleSheet, Alert } from 'react-native';
 import { IconButton, Text, useTheme } from 'react-native-paper';
 
 import useAudioRecorder from '../hooks/useAudioRecorder';
 import Logo from '../assets/icon.svg'; // Adjust the path according to your project structure
+import useSendRecording from '../hooks/useSendRecording';
 
 export const Recorder = ({navigation}) => {
   const theme = useTheme();
+  const { sendRecording, isLoading } = useSendRecording();
+  const { uri, isRecording, handleStartStop, stopRecording } = useAudioRecorder();
 
-  const {uri, isRecording, handleStartStop, stopRecording} = useAudioRecorder();
-  const endRecording = () =>{
-    stopRecording();
-    console.log(uri);
-    navigation.navigate('Home');
+  useEffect(() => {
+    const endRecording = async () => {
+      if (uri) {
+        try {
+          await sendRecording(uri);
+          navigation.navigate('Home');
+        } catch (error) {
+          Alert.alert('Error', 'Failed to send recording.');
+        }
+      }
+    };
+
+    endRecording();
+  }, [uri]);
+
+  const handleEndRecording = async () => {
+    await stopRecording();
   };
-  
+
+
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <View style={styles.logoContainer}>
@@ -39,7 +55,7 @@ export const Recorder = ({navigation}) => {
             size={30}
             style={styles.iconButton}
             iconColor={theme.colors.primary}
-            onPress={endRecording}
+            onPress={handleEndRecording}
           />
           <Text style={[styles.buttonLabel, { color: theme.colors.onSurface }]}>
             End
