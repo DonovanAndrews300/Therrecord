@@ -6,7 +6,7 @@ import { firestore } from '../firebaseConfig';
 const FirestoreContext = createContext({});
 
 export const FirestoreProvider = ({ children }) => {
-  const [userData, setUserData] = useState([]);
+  const [userData] = useState([]);
   const [audioSessions, setAudioSessions] = useState([]);
 
   // Add a new user

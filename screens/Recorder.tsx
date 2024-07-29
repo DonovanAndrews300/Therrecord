@@ -8,7 +8,7 @@ import useSendRecording from '../hooks/useSendRecording';
 
 export const Recorder = ({navigation}) => {
   const theme = useTheme();
-  const { sendRecording, isLoading } = useSendRecording();
+  const { sendRecording } = useSendRecording();
   const { uri, isRecording, handleStartStop, stopRecording } = useAudioRecorder();
 
   useEffect(() => {
