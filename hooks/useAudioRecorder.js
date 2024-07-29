@@ -71,7 +71,7 @@ const useAudioRecorder =  () => {
       }
       const audioUri = recording.getURI();
       setUri(audioUri);
-      setRecording(null);
+      setRecording(null);recording.getURI()
       setIsRecording(false);
       console.log('Recording stopped and stored at', audioUri);
     } catch (error) {

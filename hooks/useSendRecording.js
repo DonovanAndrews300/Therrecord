@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import * as FileSystem from 'expo-file-system';
-import { Audio } from 'expo-av';
 
 import { useFirestore } from '../contexts/FirestoreContext';
 import { useAuth } from '../contexts/AuthContext';
@@ -8,32 +7,6 @@ import { useAuth } from '../contexts/AuthContext';
 
 
 
-async function testAudioFile(uri) {
-  try {
-    // Load the audio file using Expo's Audio API
-    const { sound, status } = await Audio.Sound.createAsync({ uri });
-
-    // Check if the audio data is valid and complete
-    if (status.isLoaded && status.durationMillis > 0) {
-      return {
-        isValid: true,
-        duration: status.durationMillis / 1000, // Convert milliseconds to seconds
-        numberOfChannels: status.audioChannelCount,
-        sampleRate: status.sampleRate,
-      };
-    } else {
-      throw new Error('The audio file is invalid or incomplete.');
-    }
-  } catch (error) {
-    console.error('An error occurred while loading the audio file:', error);
-    return {
-      isValid: false,
-      error: error.message,
-    };
-  }
-}
-
-// Example usage:
 
 const useSendRecording = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -75,7 +48,6 @@ const useSendRecording = () => {
       });
 
       const data = await response.json();
-      console.log(user);
       const audioSession = {
         user_id: user.uid,
         file_name: filename,
