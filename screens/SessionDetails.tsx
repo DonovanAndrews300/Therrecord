@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { View, StyleSheet, ScrollView, Text } from 'react-native';
 import { Button, IconButton, Headline, Card, Divider, useTheme } from 'react-native-paper';
 
-export const SessionDetails = () => {
+export const SessionDetails = ({route}) => {
   const [transcriptVisible, setTranscriptVisible] = useState(false);
   const theme = useTheme(); // Access the theme from context
-
+  const {item} = route.params;
   const toggleTranscript = () => {
     setTranscriptVisible(!transcriptVisible);
   };

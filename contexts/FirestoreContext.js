@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { collection, getDocs, addDoc, doc, setDoc, getDoc, query, where } from 'firebase/firestore';
-
+import { collection, getDocs, addDoc, doc, setDoc, getDoc, query, where, orderBy, startAfter, limit } from 'firebase/firestore';
 import { firestore } from '../firebaseConfig';
 
 const FirestoreContext = createContext({});
@@ -8,11 +7,15 @@ const FirestoreContext = createContext({});
 export const FirestoreProvider = ({ children }) => {
   const [userData] = useState([]);
   const [audioSessions, setAudioSessions] = useState([]);
+  const [lastDoc, setLastDoc] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const PAGE_SIZE = 10; // Adjust the page size as needed
 
   // Add a new user
   const addUser = async (user) => {
     try {
-      const userRef = doc(db, 'users', user.id);
+      const userRef = doc(firestore, 'users', user.id);
       await setDoc(userRef, user);
       console.log('User added successfully');
     } catch (error) {
@@ -34,7 +37,7 @@ export const FirestoreProvider = ({ children }) => {
   // Get user data
   const getUserData = async (userId) => {
     try {
-      const userRef = doc(db, 'users', userId);
+      const userRef = doc(firestore, 'users', userId);
       const userDoc = await getDoc(userRef);
       if (userDoc.exists()) {
         return userDoc.data();
@@ -50,23 +53,43 @@ export const FirestoreProvider = ({ children }) => {
 
   // Get audio files for a user
   const getAudioSessions = async (userId) => {
+    if (loading || !hasMore) return;
+
+    setLoading(true);
     try {
-      const audioSessionsRef = collection(db, 'audioSessions');
-      const q = query(audioSessionsRef, where('userId', '==', userId));
+      const audioSessionsRef = collection(firestore, 'audio_sessions');
+      let q = query(
+        audioSessionsRef,
+        where('user_id', '==', userId),
+        limit(PAGE_SIZE)
+      );      
+
+      if (lastDoc) {
+        q = query(q, startAfter(lastDoc));
+      }
+
       const querySnapshot = await getDocs(q);
-      const audioSessions = [];
-      querySnapshot.forEach((doc) => {
-        audioSessions.push(doc.data());
-      });
-      setAudioSessions(audioSessions);
+
+      const sessions = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setAudioSessions((prevSessions) => [...prevSessions, ...sessions]);
+
+      if (querySnapshot.size < PAGE_SIZE) {
+        setHasMore(false);
+      } else {
+        setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
+      }
+
+      return sessions;
     } catch (error) {
       console.error('Error getting audio files: ', error);
       return [];
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <FirestoreContext.Provider value={{ addUser, addAudioSession, getUserData, getAudioSessions, userData, audioSessions }}>
+    <FirestoreContext.Provider value={{ addUser, addAudioSession, getUserData, getAudioSessions, userData, audioSessions, hasMore, loading }}>
       {children}
     </FirestoreContext.Provider>
   );
