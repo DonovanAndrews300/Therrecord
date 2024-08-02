@@ -6,6 +6,7 @@ export const SessionDetails = ({route}) => {
   const [transcriptVisible, setTranscriptVisible] = useState(false);
   const theme = useTheme(); // Access the theme from context
   const {item} = route.params;
+  console.log(item);
   const toggleTranscript = () => {
     setTranscriptVisible(!transcriptVisible);
   };

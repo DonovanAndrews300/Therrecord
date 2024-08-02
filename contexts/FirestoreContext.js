@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
-import { collection, getDocs, addDoc, doc, setDoc, getDoc, query, where, orderBy, startAfter, limit } from 'firebase/firestore';
+import { collection, getDocs, addDoc, doc, setDoc, getDoc, query, where, startAfter, limit } from 'firebase/firestore';
+
 import { firestore } from '../firebaseConfig';
 
 const FirestoreContext = createContext({});
